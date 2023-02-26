@@ -6,10 +6,11 @@ export interface Props {
 }
 
 export const Layout = ({ title, children }: PropsWithChildren<Props>) => {
+  const titleWithPrefix = title ? `${title} | ` : ''
   return (
     <>
       <Head>
-        <title>{`${title} | ` || ''} Music Box</title>
+        <title>Music Box</title>
       </Head>
       <header>
         <h1>Music Box</h1>

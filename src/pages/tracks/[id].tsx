@@ -2,6 +2,7 @@ import { getTrack, Track } from "@/lib/spotify"
 import { GetServerSideProps, NextPage } from "next"
 import { getToken } from "next-auth/jwt"
 import Image from "next/image"
+import QRCode from "react-qr-code"
 
 // TODO: static generation
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -18,15 +19,19 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     return { notFound: true, }
   }
 
-  return { props: { track } }
+  const ngrokUrl = process.env.NGROK_URL!
+
+  return { props: { track, ngrokUrl } }
 }
 
 export interface Props {
   track?: Track
+  ngrokUrl: string
 }
 
-const TrackPage: NextPage<Props> = ({ track }) => {
-  if (!track) {
+
+const TrackPage: NextPage<Props> = ({ track, ngrokUrl }) => {
+  if (!track || track === null || track === undefined || track.artists === undefined) {
     return <div>Track not found</div>
   }
 
@@ -36,7 +41,10 @@ const TrackPage: NextPage<Props> = ({ track }) => {
         {track.name} - {track.artists.map((artist) => artist.name).join(', ')}
       </h2>
       <Image alt={track.album.name} src={track.album.images[0].url} width={track.album.images[0].width} height={track.album.images[0].height} />
-      <p>{track.external_urls.spotify}</p>
+      <p>{track.uri}</p>
+      <QRCode value={track.external_urls.spotify} /><br />
+
+      <QRCode value={`${ngrokUrl}/kids-app`} style={{ marginTop: "3em" }} />
     </>
   )
 }

@@ -1,7 +1,7 @@
 import { AuthMenu } from "@/components/AuthMenu";
 import { Layout } from "@/components/Layout";
 import { NextPage } from "next";
-import { Search } from "@/components/Search";
+import { Search } from "@/components/Search"
 
 const Home: NextPage = () => {
 

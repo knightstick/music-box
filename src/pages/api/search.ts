@@ -2,13 +2,6 @@ import { search } from "@/lib/spotify";
 import { NextApiHandler } from "next";
 import { getToken } from "next-auth/jwt";
 
-const searchResults = [
-  {
-    id: 2,
-    title: "Song 2",
-  },
-];
-
 const handler: NextApiHandler = async (req, res) => {
   const token = await getToken({ req });
 

@@ -42,7 +42,7 @@ const TrackPage: NextPage<Props> = ({ track, ngrokUrl }) => {
       </h2>
       <Image alt={track.album.name} src={track.album.images[0].url} width={track.album.images[0].width} height={track.album.images[0].height} />
       <p>{track.uri}</p>
-      <QRCode value={track.external_urls.spotify} /><br />
+      <QRCode value={track.uri} /><br />
 
       <QRCode value={`${ngrokUrl}/kids-app`} style={{ marginTop: "3em" }} />
     </>

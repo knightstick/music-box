@@ -1,4 +1,3 @@
-import { getToken } from "next-auth/jwt"
 import { useSession } from "next-auth/react"
 
 import dynamic from 'next/dynamic';
@@ -26,8 +25,7 @@ export const SongPlayer = ({ url }: { url: string | undefined }) => {
       <SpotifyPlayer
         token={accessToken}
         uris={[url]}
-        // TODO: refresh access token
-        getOAuthToken={async (cb) => { console.log("getOAuthToken", cb) }}
+        getOAuthToken={async (cb) => { cb(accessToken) }}
       />
     </>
   )

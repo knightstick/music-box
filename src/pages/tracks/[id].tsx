@@ -44,7 +44,9 @@ const TrackPage: NextPage<Props> = ({ track, ngrokUrl }) => {
       <p>{track.uri}</p>
       <QRCode value={track.uri} /><br />
 
-      <QRCode value={`${ngrokUrl}/kids-app`} style={{ marginTop: "3em" }} />
+      {ngrokUrl && (
+        <QRCode value={`${ngrokUrl}/kids-app`} style={{ marginTop: "3em" }} />
+      )}
     </>
   )
 }
